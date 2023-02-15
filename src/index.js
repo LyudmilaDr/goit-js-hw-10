@@ -1,8 +1,9 @@
 import './css/styles.css';
 import {fetchCountries} from './fetchCountries';
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
+import debounce from 'lodash.debounce';
 
-const  debounce  = require ( ' lodash.debounce ' ) ; 
+
 const DEBOUNCE_DELAY = 300;
 const fetchCountriesName = document.querySelector('#search-box');
 const countryList = document.querySelector('[country-list]');
