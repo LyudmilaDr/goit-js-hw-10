@@ -1,11 +1,17 @@
-export function fetchCountries(name){
+const  fetchCountries = name => {
     return
-    fetch("https://restcountries.com/v3.1/name/{name}")
-    .then((response) => {
+     fetch(`https://restcountries.com/v3.1/name/${name}?fields=,name,capital,population,flags,languages`)
+      .then(response => {
         if (!response.ok) {
-            throw new Error(response.status);
+          if (response.status === 404) {
+            return [];
           }
-          return response.json();
+          throw new Error(response.statusText);
         }
-      );
-    }
+        return response.json();
+      })
+      .catch(error => {
+        console.error(error);
+      });
+  };
+  export default  fetchCountries;
