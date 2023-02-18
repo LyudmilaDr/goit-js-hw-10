@@ -7,8 +7,5 @@ export function fetchCountries(name) {
       throw new Error(resp.statusText);
     }
     return resp.json();
-  })
-  .catch(error => {
-    console.error(error);
   });
 }
