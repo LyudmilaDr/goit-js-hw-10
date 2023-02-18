@@ -9,12 +9,13 @@ const input = document.querySelector('#search-box');
 const countryList = document.querySelector('[country-list]');
 // const countryInfo = document.querySelector('[country-info]');
 
+
 input.addEventListener('input', debounce(searchСountry, DEBOUNCE_DELAY));
 
 function searchСountry(e){
 
-  const inputValue = input.value.trim();
-  if(inputValue !== ''){
+  const inputValue =  e.target.value.trim();
+  if(inputValue !== ""){
     fetchCountries(inputValue).then(data => {
     if(data.length > 10){
       Notiflix.Notify.info('Too many matches found. Please enter a more specific name.');
@@ -26,16 +27,16 @@ function searchСountry(e){
       Notiflix.Notify.failure('Oops, there is no country with that name'); 
     }
   })
-  .catch(error => {
-    console.log(error);
-    Notiflix.Notify.failure('Oops, there is no country with that name');
-  })
+  // .catch(error => {
+  //   console.log(error);
+  //   Notiflix.Notify.failure('Oops, there is no country with that name');
+  // })
   }
 }
 
 function renderCountry(arr) {
-    const markup = arr
-      .map(({ name,capital,population,flags,languages }) => {
+  const markup = arr
+  .map(({ name,capital,population,flags,languages }) => {
         return `<li><img src="${flags.svg}" alt=${name.official} width="25" height="25">
         <h2> ${name.official}</h2>
         <p><b>Capital:</b>${capital}</p>
@@ -46,8 +47,7 @@ function renderCountry(arr) {
       countryList.innerHTML = markup;
   }
   function renderCountriesUl(arr){
-    const markup = arr
-    .map(({ name, flags }) => {
+    const markup = arr.map(({ name,flags }) => {
         return  `<li><img src="${flags.svg}" alt=${name.official} width="25" height="25">
         <h2> ${name.official}</h2></li>`
         
