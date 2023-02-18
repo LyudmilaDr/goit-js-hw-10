@@ -1,16 +1,12 @@
-const  fetchCountries = name => {
-    return fetch('https:restcountries.com/v3.1/name/Ukraine/${name}?fields=name,capital,population,flag,languages')
-      .then(response => {
-        if (!response.ok) {
-          if (response.status === 404) {
-            return [];
-          }
-          throw new Error(response.statusText);
-        }
-        return response.json();
-      })
-      .catch(error => {
-        console.error(error);
-      });
-  };
-  export default  fetchCountries;
+export function fetchCountries(name) {
+  const BASE_URL = 'https://restcountries.com/v3.1/name/';
+
+  return fetch(
+    `${BASE_URL}${name}?fields=name,capital,population,flags,languages`
+  ).then(resp => {
+    if (!resp.ok) {
+      throw new Error(resp.statusText);
+    }
+    return resp.json();
+  });
+}
