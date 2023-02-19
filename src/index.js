@@ -1,18 +1,18 @@
 import './css/styles.css';
 import Notiflix from 'notiflix';
 import debounce from 'lodash.debounce';
-import { fetchCountries } from './js/fetchCountries';
+import {fetchCountries} from './js/fetchCountries';
 
 
 const DEBOUNCE_DELAY = 300;
-const input = document.querySelector('#search-box');
+const inputEl = document.querySelector('#search-box');
 const countryList = document.querySelector('[country-list]');
 
-input.addEventListener('input', debounce(searchСountry, DEBOUNCE_DELAY));
+inputEl.addEventListener('input', debounce(searchСountry, DEBOUNCE_DELAY));
 
 function searchСountry(){
-const inputValue = input.value.trim();
-  clean();
+const inputValue = inputEl.value.trim();
+  // clean();
   if(inputValue !== ""){
     fetchCountries(inputValue)
     .then(data => {
@@ -51,8 +51,8 @@ function renderCountry(countries) {
       .join("");
       countryList.innerHTML = markup; 
   }
-  function clean() {
-      countryList.innerHTML = '';
-    }
+  // function clean() {
+  //     countryList.innerHTML = '';
+  //   }
   
 
