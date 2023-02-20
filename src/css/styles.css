@@ -18,3 +18,11 @@ body {
   max-width: 320px;
   margin-bottom: 16px;
 }
+.country-list{
+    text-decoration: none;
+    color: currentColor;
+    list-style: none;
+    margin:0;
+    padding:0;
+}
+

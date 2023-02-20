@@ -6,13 +6,13 @@ import {fetchCountries} from './js/fetchCountries';
 
 const DEBOUNCE_DELAY = 300;
 const inputEl = document.querySelector('#search-box');
-const countryList = document.querySelector('[country-list]');
+const countryList = document.querySelector('.country-list');
 
 inputEl.addEventListener('input', debounce(searchСountry, DEBOUNCE_DELAY));
 
 function searchСountry(){
 const inputValue = inputEl.value.trim();
-  // clean();
+countryList.innerHTML = ''
   if(inputValue !== ""){
     fetchCountries(inputValue)
     .then(data => {
@@ -35,24 +35,21 @@ const inputValue = inputEl.value.trim();
 function renderCountry(countries) {
   const markup = countries
   .map(country => {
-        return `<li><img src="${country.flags.svg}" alt=${country.name.official} width="25" height="25">
+        return `<li><img src="${country.flags.svg}" alt=${country.name.official} width="50" height="25">
         <h2> ${country.name.official}</h2>
-        <p><b>Capital:</b>${country.capital}</p>
-        <p><b>Population:</b>${country.population}</p>
-        <p><b>Languages:</b>${country.languages}</p></li>`
+        <p><b>Capital :</b>${country.capital}</p>
+        <p><b>Population :</b>${country.population}</p>
+        <p><b>Languages :</b>${Object.values(country.languages)}</p></li>`
       })
       .join("");
       countryList.innerHTML = markup;
   }
   function renderCountriesUl(countries) {
     const markup = countries.map(country => {
-        return  `<li><img src="${country.flags.svg}" alt=${country.name.official} width="25" height="25">
+        return  `<li><img src="${country.flags.svg}" alt=${country.name.official} width="50" height="25">
         <h2> ${country.name.official}</h2></li>`})
       .join("");
       countryList.innerHTML = markup; 
   }
-  // function clean() {
-  //     countryList.innerHTML = '';
-  //   }
   
 
