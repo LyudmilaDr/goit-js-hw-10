@@ -27,7 +27,7 @@ countryList.innerHTML = ''
     }
   })
   .catch(error => {
-  console.error(error);
+    Notiflix.Notify.failure('Oops, there is no country with that name');
   })
   }
 }
@@ -39,7 +39,7 @@ function renderCountry(countries) {
         <h2> ${country.name.official}</h2>
         <p><b>Capital :</b>${country.capital}</p>
         <p><b>Population :</b>${country.population}</p>
-        <p><b>Languages :</b>${Object.values(country.languages)}</p></li>`
+        <p><b>Languages :</b>${Object.values(country.languages).join(", ")}</p></li>`
       })
       .join("");
       countryList.innerHTML = markup;
